@@ -110,6 +110,11 @@ git clone https://github.com/astha-chem/mvts-ano-eval.git
 conda create -n mvtsenv python=3.6
 source activate mvtsenv
 python3 -m pip3 install --user --upgrade pip
+
+# in some python environment run this to avoid wrapt version issue
+# from https://github.com/tensorflow/tensorflow/issues/30191
+pip install wrapt --upgrade --ignore-installed
+
 pip install -r requirements.txt --user
 # based on your cuda version or use the cpu only version
 conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
