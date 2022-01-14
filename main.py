@@ -56,7 +56,7 @@ def run_all_benchmarks(out_dir_root):
                     "LSTM-ED_recon_all",
                     "TcnED",
                     "VAE-LSTM",
-                    "MSCRED",
+                    # "MSCRED",
                     "OmniAnoAlgo"
                     ]
     run_multi_seeds(out_dir_root=out_dir_root,
@@ -94,7 +94,7 @@ def run_quick_trial_all_algos(out_dir_root):
                     "LSTM-ED_recon_all",
                     "TcnED",
                     "VAE-LSTM",
-                    "MSCRED",
+                    # "MSCRED",
                     "OmniAnoAlgo"
                     ]
     run_multi_seeds(out_dir_root=out_dir_root,
