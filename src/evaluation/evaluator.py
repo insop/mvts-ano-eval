@@ -151,40 +151,40 @@ def evaluate(saved_model_root, logger, thres_methods=["top_k_time", "best_f1_tes
         algo_results["std_scores_train"].append(np.std(score_t_train))
 
         if eval_R:
-            if algo_name == "TelemanomAlgo":
-                logger.info("Evaluating for static gaussian for TelemanomAlgo")
-                # get static gaussian scores. This is usually done in the trainer, but not for this algo
-                distr_names = ["univar_gaussian"]
-                distr_par_file = os.path.join(saved_model_root, folder_name, "distr_parameters")
-                if error_t_train is None or error_tc_train is None:
-                    score_t_test_gauss_s = error_t_test
-                    score_t_train_gauss_s = None
-                    score_tc_test_gauss_s = error_tc_test
-                else:
-                    distr_params = fit_distributions(distr_par_file, distr_names, predictions_dic=
-                    {"train_raw_scores": error_tc_train})[distr_names[0]]
-                    score_t_train_gauss_s, _, score_t_test_gauss_s, score_tc_train_gauss_s, _, score_tc_test_gauss_s = \
-                        get_scores_channelwise(distr_params, train_raw_scores=error_tc_train,
-                                               val_raw_scores=None, test_raw_scores=error_tc_test,
-                                               logcdf=True)
+            # if algo_name == "TelemanomAlgo":
+            #     logger.info("Evaluating for static gaussian for TelemanomAlgo")
+            #     # get static gaussian scores. This is usually done in the trainer, but not for this algo
+            #     distr_names = ["univar_gaussian"]
+            #     distr_par_file = os.path.join(saved_model_root, folder_name, "distr_parameters")
+            #     if error_t_train is None or error_tc_train is None:
+            #         score_t_test_gauss_s = error_t_test
+            #         score_t_train_gauss_s = None
+            #         score_tc_test_gauss_s = error_tc_test
+            #     else:
+            #         distr_params = fit_distributions(distr_par_file, distr_names, predictions_dic=
+            #         {"train_raw_scores": error_tc_train})[distr_names[0]]
+            #         score_t_train_gauss_s, _, score_t_test_gauss_s, score_tc_train_gauss_s, _, score_tc_test_gauss_s = \
+            #             get_scores_channelwise(distr_params, train_raw_scores=error_tc_train,
+            #                                    val_raw_scores=None, test_raw_scores=error_tc_test,
+            #                                    logcdf=True)
 
-                telemanom_gauss_s_results = collect_eval_metrics(algo_results=telemanom_gauss_s_results,
-                                                                 score_t_test=score_t_test_gauss_s,
-                                                                 y_test=y_test,
-                                                                 thres_methods=thres_methods,
-                                                                 logger=logger,
-                                                                 true_events=true_events,
-                                                                 rca_possible=rca_possible,
-                                                                 score_tc_test=score_tc_test_gauss_s,
-                                                                 root_causes=root_causes,
-                                                                 score_t_train=score_t_train_gauss_s,
-                                                                 point_adjust=point_adjust,
-                                                                 thres_config_dict=thres_config_dict,
-                                                                 eval_methods=eval_methods,
-                                                                 make_plots=make_plots,
-                                                                 dataset=dataset,
-                                                                 plots_name=plots_name + "-gauss-s",
-                                                                 composite_best_f1=composite_best_f1)
+            #     telemanom_gauss_s_results = collect_eval_metrics(algo_results=telemanom_gauss_s_results,
+            #                                                      score_t_test=score_t_test_gauss_s,
+            #                                                      y_test=y_test,
+            #                                                      thres_methods=thres_methods,
+            #                                                      logger=logger,
+            #                                                      true_events=true_events,
+            #                                                      rca_possible=rca_possible,
+            #                                                      score_tc_test=score_tc_test_gauss_s,
+            #                                                      root_causes=root_causes,
+            #                                                      score_t_train=score_t_train_gauss_s,
+            #                                                      point_adjust=point_adjust,
+            #                                                      thres_config_dict=thres_config_dict,
+            #                                                      eval_methods=eval_methods,
+            #                                                      make_plots=make_plots,
+            #                                                      dataset=dataset,
+            #                                                      plots_name=plots_name + "-gauss-s",
+            #                                                      composite_best_f1=composite_best_f1)
 
             if error_tc_train is not None and error_tc_test is not None:
                 logger.info("Doing mean adjustment of train and test error_tc")
@@ -279,10 +279,10 @@ def evaluate(saved_model_root, logger, thres_methods=["top_k_time", "best_f1_tes
                                                      rca_possible, eval_methods=eval_methods)
         final_results = np.concatenate((final_results, results_R), axis=0)
 
-        if algo_name == "TelemanomAlgo":
-            results_telem, _ = combine_entities_eval_metrics(telemanom_gauss_s_results, thres_methods, me_ds_name,
-                                                             algo_name + "-Gauss-S", rca_possible, eval_methods=eval_methods)
-            final_results = np.concatenate((final_results, results_telem), axis=0)
+        # if algo_name == "TelemanomAlgo":
+        #     results_telem, _ = combine_entities_eval_metrics(telemanom_gauss_s_results, thres_methods, me_ds_name,
+        #                                                      algo_name + "-Gauss-S", rca_possible, eval_methods=eval_methods)
+        #     final_results = np.concatenate((final_results, results_telem), axis=0)
 
     if eval_dyn:
         results_dyn, _ = combine_entities_eval_metrics(algo_dyn_results, dyn_thres_methods,

@@ -109,18 +109,18 @@ def get_best_config(algo_name, ds_name):
     }
 
     # to test and confirm if this is ok for swat, not yet tested
-    best_configs["TelemanomAlgo"] = {
-        "sequence_length": seq_lens[ds_name],
-        "num_epochs": num_epochs,
-        "gpu": gpu,
-        "batch_size": 64,
-        "stride": strides[ds_name],
-        "train_val_percentage": train_val_pc,
-        "test_batch_size": 256 if ds_name == "wadi" else 512,
-        "n_lstm_units": n_dims[ds_name],
-        "telem_only": True if ds_name in ["msl", "smap"] else False,
-        "verbose": True
-    }
+    # best_configs["TelemanomAlgo"] = {
+    #     "sequence_length": seq_lens[ds_name],
+    #     "num_epochs": num_epochs,
+    #     "gpu": gpu,
+    #     "batch_size": 64,
+    #     "stride": strides[ds_name],
+    #     "train_val_percentage": train_val_pc,
+    #     "test_batch_size": 256 if ds_name == "wadi" else 512,
+    #     "n_lstm_units": n_dims[ds_name],
+    #     "telem_only": True if ds_name in ["msl", "smap"] else False,
+    #     "verbose": True
+    # }
 
     best_configs["TcnED"] = {
         "num_epochs": num_epochs,
@@ -221,16 +221,16 @@ def get_best_config(algo_name, ds_name):
         "train_val_percentage": train_val_pc
     }    
 
-    best_configs["Ocsvm_gpu"] = {
-        "explained_var": pca_expl_var,
-        "univar": False,
-        "sequence_length": seq_lens[ds_name],
-        "stride": strides[ds_name],
-        "train_val_percentage": train_val_pc,
-        "batch_size": batch_size, 
-        "gamma": "auto",
-        "nu": 0.48899475599830133
-    }      
+    # best_configs["Ocsvm_gpu"] = {
+    #     "explained_var": pca_expl_var,
+    #     "univar": False,
+    #     "sequence_length": seq_lens[ds_name],
+    #     "stride": strides[ds_name],
+    #     "train_val_percentage": train_val_pc,
+    #     "batch_size": batch_size, 
+    #     "gamma": "auto",
+    #     "nu": 0.48899475599830133
+    # }      
 
     return best_configs[algo_name]
 
